@@ -1,0 +1,10 @@
+.vid {
+    grid-area: n;
+    padding: 10px;
+  }
+
+
+
+.vid video{
+    width: 400px;
+}
