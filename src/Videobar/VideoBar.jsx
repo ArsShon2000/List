@@ -5,7 +5,7 @@ import styleVideo from "./VideoBar.module.css"
 const VideoBar = (props) => {
     return(
         <div className={styleVideo.vid}>
-            <video className="videoTag" > //autoPlay loop muted
+            <video className="videoTag" autoPlay loop muted> //
                 <source src={sample} type='video/mp4' />
             </video> 
             <div>
