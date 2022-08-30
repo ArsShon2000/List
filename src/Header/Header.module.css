@@ -1,0 +1,33 @@
+.header {
+    grid-area: h;
+  }
+
+  .names {
+    margin-top: 10px;
+  }
+
+  .loginBlock {
+    position: relative;
+    float: right;
+    padding: 10px;
+  }
+
+  .loginBlock a {
+    padding: 10px;
+    color: aliceblue;
+    text-decoration: none;
+  }
+
+  
+  .mainBlock {
+    position: absolute;
+    float: le;
+    padding: 10px;
+  }
+
+  .mainBlock a {
+    padding: 10px;
+    color: aliceblue;
+    text-decoration: none;
+  }
+  

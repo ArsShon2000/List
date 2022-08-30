@@ -2,16 +2,18 @@
   display: grid;
   margin: auto;
   width: 1200px;
+  height: 570px;
   grid-template-areas:
-    "h h"
-    "n c";
+    "h h h"
+    "n m c"
+    "g e e";
+  background-color: rgb(146, 133, 135);
 
-
-  grid-template-rows: 50px 1fr;
-  grid-template-columns: 1fr 20fr;
+  grid-template-rows: 50px 1fr 1fr;
+  grid-template-columns: 1fr 7fr 20fr;
 }
 
 .App-wrapper-content {
   grid-area: c;
-  background-color: rgb(226, 43, 73);
+
 }

@@ -8,12 +8,10 @@ const VideoBar = (props) => {
             <video className="videoTag" autoPlay loop muted> //
                 <source src={sample} type='video/mp4' />
             </video> 
-            <div>
-                <textarea>
-
-                </textarea>
-            </div>
+            <div></div>
+            <div></div>
         </div>
+        
     )
 }
 

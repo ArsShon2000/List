@@ -1,8 +1,11 @@
 .vid {
     grid-area: n;
     padding: 10px;
+    width: 400px;
+    overflow:hidden;
+    display:block;
+    height: 400px;
   }
-
 
 
 .vid video{

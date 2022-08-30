@@ -1,0 +1,38 @@
+.lab {
+  /* text-align: center; */
+  grid-area: g;
+  height: 1000px;
+  color: #000000 !important;
+  text-shadow: 1px 0 1px #000,
+    0 1px 1px #000,
+    -1px 0 1px #000,
+    0 -1px 1px #000;
+}
+
+.lab img {
+  width: 400px;
+}
+
+.image1 {
+  position: absolute;
+  margin-top: -32px;
+}
+
+
+.text2 {
+  text-align: center;
+  position: relative;
+  color: rgb(0, 0, 0);
+  font-size: 70px;
+  left: -50px;
+  margin-top: 0px;
+}
+
+.text3 {
+  text-align: center;
+  margin-top: -80px;
+  position: relative;
+  color: rgb(0, 0, 0);
+  font-size: 40px;
+  margin-left: 260px;
+}
