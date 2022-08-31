@@ -5,10 +5,13 @@ import Login from './../Login/Login';
 
 
 const Navbar = (props) => {
-    debugger
-    let isAuth = props.isAuth
-    if (isAuth != false ) {
-        return <Login />
+    // let isAuth = props.isAuth
+    // if (isAuth != true ) {
+    //     return <Login />
+    // }
+
+    let exit = () => {
+        // return isAuth = false
     }
     return (
         <header className={sty.header}>
@@ -24,7 +27,7 @@ const Navbar = (props) => {
                     <NavLink to="/options" activeClassName={sty.active}>Настройки</NavLink>
                 </div>
                 <div className={sty.item}>
-                    <NavLink to="/logout" activeClassName={sty.active}>Выход</NavLink>
+                    <NavLink to="/login" activeClassName={sty.active} onClick= {exit} >Выход</NavLink>
                 </div>
                 {/* <br></br> */}
             </nav>

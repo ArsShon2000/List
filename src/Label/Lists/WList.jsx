@@ -10,11 +10,15 @@ const instance = axios.create({
 })
 
 const WList = (props) => {
-    let [title, setTitle] = useState('');
-    const [whiteList, setWhiteList] = useState([]);
 
+    // instance.post('/create-db-w', () => {}) 
+
+    let [title, setTitle] = useState('');
+    let [titleName, setTitleName] = useState('');
     let [titleForDel, setTitleForDel] = useState('');
-    const [whiteListForDel, setWhiteListForDel] = useState([]);
+    let [titleOwner, setTitleOwner] = useState('');
+
+    const [whiteList, setWhiteList] = useState([]);
 
     useEffect(() => {
         instance.get('/wNum').then((res) => {
@@ -22,33 +26,39 @@ const WList = (props) => {
         })
     }, []);
 
-    useEffect(() => {
-        instance.get('/wNum').then((res) => {
-            setWhiteListForDel(res.data.wNum);
-        })
-    }, []);
-
-
 
     let onAddName = () => {
         instance.post('/wNum', {
             carNumber: title,
+            name: titleName
         }).then((res) => {
-            setWhiteList([...whiteList, { car_number: title }])
+            setWhiteList([...whiteList, { car_number: title, name: titleName }])
             title = ''
+            titleName = ''
             console.log(res);
         })
-
     }
 
-    console.log(whiteListForDel)
+    console.log(whiteList)
+    //удаление по номеру
     let onDelName = () => {
-        instance.delete(`/wNum/${titleForDel}`).then((res) => {
-            setWhiteList(whiteList.filter((e) => {
-                return e.car_number !== titleForDel
-            }))
-            console.log(res);
-        })
+        if (titleForDel != '') {
+            instance.delete(`/wNum/${titleForDel}`).then((res) => {
+                setWhiteList(whiteList.filter((e) => {
+                    return e.car_number !== titleForDel
+                }))
+                console.log(res);
+            })
+        }
+        // удаление по владельцу
+        if (titleOwner != '') {
+            instance.delete(`/wNum/${titleOwner}`).then((res) => {
+                setWhiteList(whiteList.filter((e) => {
+                    return e.name !== titleOwner
+                }))
+                console.log(res);
+            })
+        }
     }
 
     // let isAuth = true
@@ -58,12 +68,17 @@ const WList = (props) => {
 
     return <div className="white">
 
-        <span>whiteList</span>
+        {/* <span>whiteList</span> */}
         <div>
             <input
                 type="text"
                 value={title} onChange={(e) => setTitle(e.currentTarget.value)}
                 placeholder="Номер машины"
+            />
+            <input
+                type="text"
+                value={titleName} onChange={(e) => setTitleName(e.currentTarget.value)}
+                placeholder="Владелец"
             />
             <button onClick={onAddName}>Добавить</button>
         </div>
@@ -75,12 +90,18 @@ const WList = (props) => {
                 value={titleForDel} onChange={(e) => setTitleForDel(e.currentTarget.value)}
                 placeholder="Удалить машину"
             />
+            <input
+                type="text"
+                value={titleOwner} onChange={(e) => setTitleOwner(e.currentTarget.value)}
+                placeholder="Удалить владельца"
+            />
             <button onClick={onDelName}>Удалить</button>
         </div>
 
         <div className={stylab.names}>
             {whiteList.map((w) => {
-                return <List name={w.car_number} />
+                return <List number={w.car_number}
+                    name={w.name} />
             })}
         </div>
     </div>

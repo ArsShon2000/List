@@ -1,3 +1,15 @@
 .name {
   margin-top: 10px;
+  /* padding: 10px; */
+}
+
+.name span{
+  padding: 0px;
+  margin-left: 0px
+}
+
+.names {
+  /* position: absolute; */
+  /* padding: 10px;
+  margin-left: 100px; */
 }

@@ -3,23 +3,30 @@ import App from "../App";
 import Navbar from "../Navbar/Navbar";
 
 
-const LoginForm = (props) => {
 
 
-let [login, setLog] = useState('');
-let [password, setPass] = useState('');
-debugger
-let isAuth = false
-let l_admin = 'admin'
-let p_admin = 'admin'
-let onLogin = () => {
-    //if(login === l_admin && password === p_admin){
-            return <App isAuth = {true}/>
-    //}
-}
 
 
-    return <form>
+
+
+
+
+
+const Login = (props) => {
+
+    let [login, setLog] = useState('');
+    let [password, setPass] = useState('');
+    let isAuth = false
+    let onLogin = () => {
+        if(login === 'admin' && password === 'admin'){
+                return <Navbar/>
+        }
+    }
+    
+
+    return (<div>
+        <h1>login</h1>
+        <form>
         <div>
             <input 
              type="text"
@@ -39,15 +46,9 @@ let onLogin = () => {
             <button onClick={onLogin}>Log In</button>
         </div>
     </form>
+    </div>)
 }
 
-
-const Login = (props) => {
-    return <div>
-        <h1>login</h1>
-        <LoginForm />
-    </div>
-}
 
 
 export default Login

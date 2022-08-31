@@ -6,7 +6,8 @@ import stylist from "./List.module.css"
 const List = (props) => {
     return (
         <div className={stylist.name}>
-          {props.name}
+          <span>{props.number} </span> &nbsp; 
+          <span className={stylist.names}> {props.name}</span>
         </div>
     )
 }

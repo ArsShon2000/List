@@ -9,12 +9,12 @@ import Navbar from './Navbar/Navbar';
 import WList from './Label/Lists/WList';
 import Label from './Label/Label';
 import BList from './Label/Lists/BList';
+import Options from './options/options';
 
 
 let App = (props) => {
 
-  debugger
-  let isAuth = props.isAuth
+  let isAuth = true
   return (
     <BrowserRouter>
       <div className="App">
@@ -26,6 +26,8 @@ let App = (props) => {
           <Routes>
             <Route path='/wlist' element={<WList />} />
             <Route path='/blist' element={<BList />} />
+            <Route path='/options' element={<Options />} />
+            <Route path='/login' element={<Login />} />
           </Routes>
         </div>
       </div>
