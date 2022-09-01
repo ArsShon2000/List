@@ -11,13 +11,14 @@ const instance = axios.create({
 
 const WList = (props) => {
 
+    // instance.post('/create-db-wn', () => {}) 
     // instance.post('/create-db-w', () => {}) 
+
 
     let [title, setTitle] = useState('');
     let [titleName, setTitleName] = useState('');
     let [titleForDel, setTitleForDel] = useState('');
     let [titleOwner, setTitleOwner] = useState('');
-
     const [whiteList, setWhiteList] = useState([]);
 
     useEffect(() => {
@@ -37,6 +38,14 @@ const WList = (props) => {
             titleName = ''
             console.log(res);
         })
+        if (titleName !== '') {
+            instance.post('/wNames', {
+                name: titleName
+            }).then((res) => {
+                setWhiteList([...whiteList, {name: titleName }])
+                console.log(res);
+            })
+        }
     }
 
     console.log(whiteList)
@@ -51,7 +60,7 @@ const WList = (props) => {
             })
         }
         // удаление по владельцу
-        if (titleOwner != '') {
+        if (titleOwner !== '') {
             instance.delete(`/wNum/${titleOwner}`).then((res) => {
                 setWhiteList(whiteList.filter((e) => {
                     return e.name !== titleOwner
@@ -85,23 +94,31 @@ const WList = (props) => {
         <br>
         </br>
         <div>
-            <input
-                type="text"
-                value={titleForDel} onChange={(e) => setTitleForDel(e.currentTarget.value)}
-                placeholder="Удалить машину"
-            />
-            <input
-                type="text"
-                value={titleOwner} onChange={(e) => setTitleOwner(e.currentTarget.value)}
-                placeholder="Удалить владельца"
-            />
+            {/* <select size="2" className="select">
+                <option value="wqerttyerwyer"></option> */}
+                <input
+                    type="text"
+                    value={titleForDel} onChange={(e) => setTitleForDel(e.currentTarget.value)}
+                    placeholder="Удалить машину"
+                />
+
+                {/* <option value="wqerttyerwyer"></option> */}
+                <input
+                    type="text"
+                    value={titleOwner} onChange={(e) => setTitleOwner(e.currentTarget.value)}
+                    placeholder="Удалить владельца"
+                />
+            {/* </select> */}
             <button onClick={onDelName}>Удалить</button>
+
         </div>
+
 
         <div className={stylab.names}>
             {whiteList.map((w) => {
                 return <List number={w.car_number}
-                    name={w.name} />
+                    names={w.name}
+                    whiteList={whiteList} />
             })}
         </div>
     </div>

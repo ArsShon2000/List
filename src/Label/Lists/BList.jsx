@@ -75,7 +75,7 @@ const BList = (props) => {
         </div>
         <div className={stylab.names}>
             {blackList.map((b) => {
-                return <List name={b.car_number} />
+                return <List names={b.car_number} />
             })}
         </div>
     </div>
