@@ -29,8 +29,6 @@ const GenCarNumber = (props) => {
     let looong = 'A777AA'
     let sh = '777'
 
-    console.log(looong)
-    console.log(sh)
 
     let onGenLong = () => {
 

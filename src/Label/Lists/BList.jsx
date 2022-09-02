@@ -11,50 +11,84 @@ const instance = axios.create({
 
 const BList = (props) => {
 
+    // instance.post('/create-db-bn', () => {}) 
     // instance.post('/create-db-b', () => {}) 
 
-    let [title2, setTitle2] = useState('');
+    let determinant = "black"
+    let [title, settitle] = useState('');
     let [titleName, setTitleName] = useState('');
     let [titleForDel, setTitleForDel] = useState('');
+    let [titleOwner, setTitleOwner] = useState('');
     const [blackList, setBlackList] = useState([]);
-
+    const [blackNameList, setBlackNameList] = useState([]);
 
     useEffect(() => {
-        instance.get('/bNum').then((res, next) => {
+        instance.get('/bNum').then((res) => {
             setBlackList(res.data.bNum);
+        })
+        instance.get(`/bNames`).then((res) => {
+            setBlackNameList(res.data.bNames);
         })
     }, []);
 
 
-
-
     let onAddName2 = () => {
-        instance.post('/bNum', {
-            carNumber: title2,
-            name: titleName
-        }).then((res) => {
-            setBlackList([...blackList, { car_number: title2, name: titleName  }])
-            title2 = ''
-            titleName= ''
-            console.log(res)
-        })
+        console.log(props.determinant)
+        //добавление номеров в blacklistnum
+        if (title !== '') {
+            instance.post('/bNum', {
+                carNumber: title,
+                name: titleName
+            }).then((res) => {
+                setBlackList([...blackList, { car_number: title, name: titleName }])
+                title = ''
+                titleName = ''
+                console.log(res + "data is added in blacklist")
+            })
+        }
+        //добавление имен в blacklistname
+        if (titleName !== '') {
+            instance.post('/bNames', {
+                name: titleName
+            }).then((res) => {
+                setBlackNameList([...blackNameList, { name: titleName }])
+                title = ''
+                titleName = ''
+                console.log(res + "name is added in blacklist");
+            })
+        }
     }
 
+    // удаление по владельцу
     let onDelName = () => {
-        instance.delete(`/bNum/${titleForDel}`).then((res) => {
-            setBlackList(blackList.filter((e) => {
-                return e.car_number !== titleForDel
-            }))
-            console.log(res);
-        })
+        if (titleOwner !== '') {
+            instance.delete(`/bNames/${titleOwner}`).then((res) => {
+                setBlackNameList(blackNameList.filter((e) => {
+                    return e.name !== titleOwner
+                }))
+                console.log(res + "name is deleted in blacklist");
+            })
+        }
+
+        //удаление по номеру
+        if (titleOwner !== '') {
+            instance.delete(`/bNum/${titleForDel}`).then((res) => {
+                setBlackList(blackList.filter((e) => {
+                    return e.car_number !== titleForDel
+                }))
+                console.log(res + "data is deleted in blacklist");
+            })
+        }
     }
+
+
 
     return <div className="black">
         {/* <span>Blacklist</span> */}
         <div>
             <input
                 type="text"
-                value={title2} onChange={(e) => setTitle2(e.currentTarget.value)}
+                value={title} onChange={(e) => settitle(e.currentTarget.value)}
                 placeholder="Номер машины"
             />
             <input
@@ -71,11 +105,23 @@ const BList = (props) => {
                 value={titleForDel} onChange={(e) => setTitleForDel(e.currentTarget.value)}
                 placeholder="Удалить машину"
             />
+            <input
+                type="text"
+                value={titleOwner} onChange={(e) => setTitleOwner(e.currentTarget.value)}
+                placeholder="Удалить владельца"
+            />
             <button onClick={onDelName}>Удалить</button>
         </div>
         <div className={stylab.names}>
-            {blackList.map((b) => {
-                return <List names={b.car_number} />
+            {blackNameList.map((b) => {
+                return (
+                <List determinant = {determinant}
+                names={b.name}
+                    idNAme={b.id_name}
+
+                    // отправляю в мап второй список (полный)
+                    whiteList={blackList} />
+                    )
             })}
         </div>
     </div>

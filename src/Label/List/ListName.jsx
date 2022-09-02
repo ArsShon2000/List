@@ -1,14 +1,19 @@
 import React from "react";
-import stylist from "./List.module.css"
 
 
 const ListName = (props) => {
-debugger
+  let renderElement= () => {
+    let names = props.names
+    let wNumName = props.wNumName
+    if(names === wNumName)
+       return (<span>{props.number}&nbsp; </span>)
+ }
+
 
       return (
-          <div className={stylist.name}>
-            <span>{props.number}</span>&nbsp;&nbsp;&nbsp;
-          </div>
+        <view className="">
+            {renderElement()}
+          </view>
       )
   }
   
