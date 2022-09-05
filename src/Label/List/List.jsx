@@ -21,7 +21,6 @@ const List = (props) => {
     alert(props.names)
     isTap = true
   }
-
   let onAddName = () => {
     //добавление номеров в вайтлистнам
     if (props.determinant === "white") {
@@ -53,8 +52,7 @@ const List = (props) => {
     }
   }
 
-  let names = props.names
-  debugger
+  let idNAme = props.idNAme
   return (
     <div className={stylist.name}>
       {/* выводится имя */}
@@ -63,9 +61,9 @@ const List = (props) => {
 
       {/* выводится номера */}
       {props.whiteList.map((n) => {
-        return <ListName names={names}
+        return <ListName idNAme={idNAme}
           number={n.car_number}
-          wNumName={n.name}
+          wIdNAme={n.id_name}
         />
       })}
       <input

@@ -33,30 +33,42 @@ const WList = (props) => {
 
 
     let onAddName = () => {
-        //добавление номеров в вайтлистнам
-        if (title !== '') {
-            instance.post('/wNum', {
-                carNumber: title,
-                name: titleName
-            }).then((res) => {
-                setWhiteList([...whiteList, { car_number: title, name: titleName }])
-                title = ''
-                titleName = ''
-                console.log(res + "data is added in whitelist");
-            })
-        }
+        let wNamesLength
+        let wIdName
+        debugger
         //добавление имен в вайтлистнейм
         if (titleName !== '') {
             instance.post('/wNames', {
                 name: titleName
             }).then((res) => {
-                setWhiteNameList([...whiteNameList, { name: titleName }])
+                setWhiteNameList([...whiteNameList, { name: titleName }])                
+                console.log(res + "name is added in whiteNamelist");
+            })
+        }
+        instance.get(`/wNames`).then((res) => {
+            setWhiteNameList(res.data.wNames);
+        })
+
+        debugger
+        //добавление номеров в вайтлистнам
+        wNamesLength = whiteNameList.length
+                wIdName = whiteNameList[wNamesLength].id_name
+        if (title !== '') {
+            instance.post('/wNum', {
+                
+                carNumber: title,
+                name: titleName,
+                id_name: wIdName
+            }).then((res) => {
+                setWhiteList([...whiteList, { car_number: title, name: titleName, id_name: wIdName }])
                 title = ''
                 titleName = ''
-                console.log(res + "name is added in whitelist");
+                console.log(res + "data is added in whitelist");
             })
         }
     }
+
+
 
     // console.log(whiteList)
     // удаление по владельцу
@@ -79,8 +91,6 @@ const WList = (props) => {
             })
         }
     }
-
-
 
     // let isAuth = true
     // if (isAuth === false) {
@@ -119,13 +129,11 @@ const WList = (props) => {
         <div className={stylab.names}>
             {whiteNameList.map((w) => {
                 return (
-                    <List determinant = {determinant} 
-                    names={w.name}
+                    <List determinant={determinant}
+                        names={w.name}
                         idNAme={w.id_name}
-                        
                         // отправляю в мап второй список (полный)
                         whiteList={whiteList} />
-                        
                 )
             })}
         </div>

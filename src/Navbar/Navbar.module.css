@@ -1,10 +1,8 @@
-.header {
-    grid-area: m;
-  }
-
-  .nav {
+.nav {
+    grid-area: m;    
     margin-top: 2px;
     width: 140px;
+    height: 110px;
     background-color: rgb(67, 67, 68);
     padding: 20px;
     font-size: 19px;
@@ -19,8 +17,8 @@
 
   .item a.active {
     color: gold;
-    text-shadow:  1px 1px 1px rgb(244, 140, 4),
-                  2px 2px 1px red;
+    text-shadow:  1px 1px 1px rgb(90, 89, 87),
+                  2px 2px 1px red;     
   }
 
   .nav img{
