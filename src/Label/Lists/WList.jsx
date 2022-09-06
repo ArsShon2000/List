@@ -11,7 +11,8 @@ const instance = axios.create({
 
 const WList = (props) => {
 
-    // instance.post('/create-db-wn', () => {}) 
+    // instance.post('/create-db-wn', () => {})
+    // instance.post('/create-db-wn2', () => {}) 
     // instance.post('/create-db-w', () => {}) 
 
     let determinant = "white"
@@ -21,21 +22,15 @@ const WList = (props) => {
     let [titleOwner, setTitleOwner] = useState('');
     const [whiteList, setWhiteList] = useState([]);
     const [whiteNameList, setWhiteNameList] = useState([]);
-
-    useEffect(() => {
-        instance.get(`/wNum`).then((res) => {
-            setWhiteList(res.data.wNum);
-        })
-        instance.get(`/wNames`).then((res) => {
-            setWhiteNameList(res.data.wNames);
-        })
-    }, []);
+    const [whiteNameList2, setWhiteNameList2] = useState([]);
 
 
+    
+
+    let idName = whiteNameList2.length + 1
     let onAddName = () => {
-        let wNamesLength
-        let wIdName
-        debugger
+        
+        
         //добавление имен в вайтлистнейм
         if (titleName !== '') {
             instance.post('/wNames', {
@@ -45,29 +40,28 @@ const WList = (props) => {
                 console.log(res + "name is added in whiteNamelist");
             })
         }
-        instance.get(`/wNames`).then((res) => {
-            setWhiteNameList(res.data.wNames);
-        })
 
-        debugger
+        if (titleName !== '') {
+            instance.post('/wNames2', {
+                name: titleName
+            }).then((res) => {
+                setWhiteNameList2([...whiteNameList2, { name: titleName }])                
+                console.log(res + "name is added in whiteNamelist");
+            })
+        }
+
         //добавление номеров в вайтлистнам
-        wNamesLength = whiteNameList.length
-                wIdName = whiteNameList[wNamesLength].id_name
-        if (title !== '') {
+        if (title !== '' && titleName !== '') {
             instance.post('/wNum', {
-                
                 carNumber: title,
                 name: titleName,
-                id_name: wIdName
+                id_name: idName
             }).then((res) => {
-                setWhiteList([...whiteList, { car_number: title, name: titleName, id_name: wIdName }])
-                title = ''
-                titleName = ''
+                setWhiteList([...whiteList, { name: titleName, id_name: idName, car_number: title }])
                 console.log(res + "data is added in whitelist");
             })
         }
     }
-
 
 
     // console.log(whiteList)
@@ -91,6 +85,19 @@ const WList = (props) => {
             })
         }
     }
+
+    
+    useEffect(() => {
+        instance.get(`/wNum`).then((res) => {
+            setWhiteList(res.data.wNum);
+        })
+        instance.get(`/wNames`).then((res) => {
+            setWhiteNameList(res.data.wNames);
+        })
+        instance.get(`/wNames2`).then((res) => {
+            setWhiteNameList2(res.data.wNames2);
+        })
+    }, []);
 
     // let isAuth = true
     // if (isAuth === false) {
@@ -131,9 +138,10 @@ const WList = (props) => {
                 return (
                     <List determinant={determinant}
                         names={w.name}
-                        idNAme={w.id_name}
+                        id_name={w.id_name}
                         // отправляю в мап второй список (полный)
-                        whiteList={whiteList} />
+                        whiteList={whiteList} 
+                        />
                 )
             })}
         </div>

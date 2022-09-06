@@ -3,9 +3,9 @@ import React from "react";
 
 const ListName = (props) => {
   let renderElement= () => {
-    let idNAme = props.idNAme
+    let id_name = props.id_name
     let wIdNAme = props.wIdNAme
-    if(idNAme === wIdNAme)
+    if(id_name === wIdNAme)
        return (<span>{props.number}&nbsp; </span>)
  }
 
