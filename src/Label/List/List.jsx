@@ -79,22 +79,22 @@ const List = (props) => {
 
       {props.names}&nbsp;&nbsp;&nbsp;
 
-        {props.whiteList.map((n) => {
+         {/* {props.whiteList.map((n) => {
           return <ListName id_name={id_name}
             number={n.car_number}
             wIdNAme={n.id_name}
           />
-        })}
-        {/* выводится номера */}
+        })} */}
+        
+        {/* выводится номера  */}
 
-        <input
+        {/* <input
           type="text"
           value={title} onChange={(e) => setTitle(e.currentTarget.value)}
           placeholder="Номер машины"
         />
         <button onClick={onAddName}>Добавить</button>
-        <button onClick={onDelName}>Удалить</button>  
-
+        <button onClick={onDelName}>Удалить</button>   */}
 
 
     </div>

@@ -31,36 +31,36 @@ const WList = (props) => {
         instance.get(`/wNum`).then((res) => {
             setWhiteList(res.data.wNum);
         })
-        instance.get(`/wNames`).then((res) => {
-            setWhiteNameList(res.data.wNames);
-        })
-        instance.get(`/wNames2`).then((res) => {
-            setWhiteNameList2(res.data.wNames2);
-        })
+        // instance.get(`/wNames`).then((res) => {
+        //     setWhiteNameList(res.data.wNames);
+        // })
+        // instance.get(`/wNames2`).then((res) => {
+        //     setWhiteNameList2(res.data.wNames2);
+        // })
     }, []);
 
 
-    
+
 
     let idName = whiteNameList2.length + 1
     let onAddName = () => {
-        
-        
+
+
         //добавление имен в вайтлистнейм
         if (titleName !== '') {
             instance.post('/wNames', {
                 name: titleName
             }).then((res) => {
-                setWhiteNameList([...whiteNameList, { name: titleName }])                
+                setWhiteNameList([...whiteNameList, { name: titleName }])
                 console.log(res + "name is added in whiteNamelist");
             })
         }
-            //добавление имен в вайтлистнейм2 для id_name
+        //добавление имен в вайтлистнейм2 для id_name
         if (titleName !== '') {
             instance.post('/wNames2', {
                 name: titleName
             }).then((res) => {
-                setWhiteNameList2([...whiteNameList2, { name: titleName }])                
+                setWhiteNameList2([...whiteNameList2, { name: titleName }])
                 console.log(res + "name is added in whiteNamelist2");
             })
         }
@@ -102,14 +102,46 @@ const WList = (props) => {
         }
     }
 
-    
 
 
 
 
+    let namesNoSort = []
+    for (let i = 0; i < whiteList.length; i++) {
+        namesNoSort[i] = whiteList[i].id_name
+    }
 
-    
-    
+    function unique(arr) {
+        let result = [];
+
+        for (let str of arr) {
+            if (!result.includes(str)) {
+                result.push(str);
+            }
+        }
+        return result;
+    }
+    unique(namesNoSort);
+
+    debugger
+    let names = []
+    for (let i = 0; i < unique(namesNoSort).length-2; i++) {
+        names[i] = whiteList[unique(namesNoSort)[i]].name
+
+        // console.log(unique(namesNoSort)[i])
+        // for (let j = 0; j < unique(namesNoSort).length; j++) {
+        //     if (unique(namesNoSort)[j] !== whiteList[i].id_name) {
+        //         console.log(i)
+        //         console.log(whiteList[i].name)
+        //         names[i] = whiteList[i].name
+        //         break
+        //     }
+        // }
+    }
+
+
+
+
     return <div className="white">
 
         {/* <span>whiteList</span> */}
@@ -141,9 +173,20 @@ const WList = (props) => {
             <button onClick={onDelName}>Удалить</button>
         </div>
         <div className={stylab.names}>
-            
-        
-            {whiteNameList.map((w) => {
+
+
+
+            <div>
+                {names.map((w) => {
+                    return (
+                        <List
+                            names={w}
+                        />
+                    )
+                })}
+            </div>
+
+            {/* {whiteNameList.map((w) => {
                 return (
                     <List determinant={determinant}
                         names={w.name}
@@ -152,7 +195,7 @@ const WList = (props) => {
                         whiteList={whiteList} 
                         />
                 )
-            })}
+            })} */}
         </div>
     </div>
 }
