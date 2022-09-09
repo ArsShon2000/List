@@ -4,6 +4,7 @@ import ListName from "./ListName";
 import axios from "axios";
 
 
+
 const instance = axios.create({
   withCredentials: true,
   baseURL: 'http://127.0.0.1:5000',
@@ -18,23 +19,25 @@ const List = (props) => {
   const [whiteList, setWhiteList] = useState([]);
   const [whiteNameList, setWhiteNameList] = useState([]);
 
+  useEffect(() => {
+    instance.get(`/wNum`).then((res) => {
+      setWhiteList(res.data.wNum);
+    })
+    instance.get(`/wNames`).then((res) => {
+      setWhiteNameList(res.data.wNames);
+    })
+  }, []);
 
 
 
-  let isTap = false
-  let onNameNum = () => {
-    alert(props.names)
-    isTap = true
-  }
-// удаление имени из таб wNum
-debugger
+  // удаление имени из таб wNum
   let onDelName = () => {
-        instance.delete(`/wNames/${id_name}`).then((res) => {
-          setWhiteNameList(whiteNameList.filter((e) => {
-                return e.id_name !== id_name
-            }))
-            console.log(res + "name is deleted in whiteNameList");
-        })
+    instance.delete(`/wNames/${id_name}`).then((res) => {
+      setWhiteNameList(whiteNameList.filter((e) => {
+        return e.id_name !== id_name
+      }))
+      console.log(res + "name is deleted in whiteNameList");
+    })
   }
   let onAddName = () => {
     //добавление номеров в вайтлистнам
@@ -51,7 +54,7 @@ debugger
         })
       }
     }
-//добавление номеров в blackлистнам
+    //добавление номеров в blackлистнам
     if (props.determinant === "black") {
       if (title !== '') {
         instance.post('/bNum', {
@@ -66,36 +69,34 @@ debugger
       }
     }
   }
-  
-  useEffect(() => {
-    instance.get(`/wNum`).then((res) => {
-        setWhiteList(res.data.wNum);
-    })
-    instance.get(`/wNames`).then((res) => {
-        setWhiteNameList(res.data.wNames);
-    })
-}, []);
-  
+
+
+
   return (
-    <div className={stylist.name}>
+    <div className={stylist.name} >
       {/* выводится имя */}
-      <span>{props.names}</span>&nbsp;&nbsp;&nbsp;
 
 
-      {/* выводится номера */}
-      {props.whiteList.map((n) => {
-        return <ListName id_name={id_name}
-          number={n.car_number}
-          wIdNAme={n.id_name}
+      {props.names}&nbsp;&nbsp;&nbsp;
+
+        {props.whiteList.map((n) => {
+          return <ListName id_name={id_name}
+            number={n.car_number}
+            wIdNAme={n.id_name}
+          />
+        })}
+        {/* выводится номера */}
+
+        <input
+          type="text"
+          value={title} onChange={(e) => setTitle(e.currentTarget.value)}
+          placeholder="Номер машины"
         />
-      })}
-      <input
-        type="text"
-        value={title} onChange={(e) => setTitle(e.currentTarget.value)}
-        placeholder="Номер машины"
-      />
-      <button onClick={onAddName}>Добавить</button>
-      <button onClick={onDelName}>Удалить</button>
+        <button onClick={onAddName}>Добавить</button>
+        <button onClick={onDelName}>Удалить</button>  
+
+
+
     </div>
   )
 }

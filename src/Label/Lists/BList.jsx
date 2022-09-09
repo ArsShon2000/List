@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import List from "../List/List";
 import stylab from "./BList.module.css"
 import axios from "axios";
+import Login from './../../Login/Login';
 
 
 const instance = axios.create({
@@ -10,6 +11,7 @@ const instance = axios.create({
 })
 
 const BList = (props) => {
+ 
 
     // instance.post('/create-db-bn', () => {}) 
     // instance.post('/create-db-b', () => {}) 
@@ -81,8 +83,7 @@ const BList = (props) => {
         }
     }
 
-
-
+   
     return <div className="black">
         {/* <span>Blacklist</span> */}
         <div>

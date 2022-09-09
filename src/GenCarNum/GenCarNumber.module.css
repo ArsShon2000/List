@@ -1,6 +1,6 @@
 .lab {
   /* text-align: center; */
-  grid-area: g;
+  grid-area: n;
   height: 1000px;
   color: #000000 !important;
   text-shadow: 1px 0 1px #000,
@@ -15,7 +15,7 @@
 
 .image1 {
   position: absolute;
-  margin-top: -32px;
+  margin-top: 390px;
 }
 
 
@@ -25,7 +25,7 @@
   color: rgb(0, 0, 0);
   font-size: 70px;
   left: -50px;
-  margin-top: 0px;
+  margin-top: 422px;
 }
 
 .text3 {

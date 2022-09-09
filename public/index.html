@@ -25,6 +25,38 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <style>
+      okno {
+        width: 300px;
+        height: 200px;
+        text-align: start;
+        padding: 15px;
+        border: 3px solid #05a0dd;
+        border-radius: 10px;
+        color: #05a0dd;
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        background-color: #ebebfc;
+      }
+      okno:target {display: contents;}
+      .close {
+        display: inline-block;
+        border: 1px solid #05a0dd;
+        color: #ffffff;
+        padding: 0 12px;
+        margin: 10px;
+        text-decoration: none;
+        background: #05a0dd;
+        font-size: 14pt;
+        cursor:pointer;
+      }
+      .close:hover {background: #d3a200;}
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

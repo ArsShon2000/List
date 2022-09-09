@@ -1,28 +1,32 @@
-import React, { useEffect, useState } from "react";
-import App from "../App";
-import Navbar from "../Navbar/Navbar";
+import React, { useState } from "react";
+import axios from "axios";
 
 
 
-
-
-
-
-
-
+const instance = axios.create({
+  withCredentials: true,
+  baseURL: 'http://127.0.0.1:5000',
+})
 
 
 const Login = (props) => {
 
-    let [login, setLog] = useState('');
-    let [password, setPass] = useState('');
-    let isAuth = false
+        // instance.post('/create-login', () => {})
+
+  let [login, setLog] = useState('');
+  let [password, setPass] = useState('');
+  const [loginList, setLoginList] = useState([]);
+// проверка на логинизацию
+
     let onLogin = () => {
-        if(login === 'admin' && password === 'admin'){
-                return <Navbar/>
-        }
+        instance.post('/login', {
+            login: login,
+            password: password
+        }).then((res) => {
+            setLoginList([...loginList, { login: login, password: password}])                
+            console.log(res + "name is added in loginList");
+        })
     }
-    
 
     return (<div>
         <h1>login</h1>

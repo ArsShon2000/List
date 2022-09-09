@@ -1,6 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Login from './../Login/Login';
+
+
+
+const instance = axios.create({
+  withCredentials: true,
+  baseURL: 'http://127.0.0.1:5000',
+})
 
 const Options = () => {
+
+
+
 
     let butName = 'Соеденить'
 
@@ -15,6 +27,7 @@ const Options = () => {
     let onTap = () => {
         butName = 'Разъеденить'
     } 
+
 
     return (
         <form>

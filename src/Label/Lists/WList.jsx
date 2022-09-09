@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import List from "../List/List";
 import stylab from "./WList.module.css"
 import axios from "axios";
+import Login from './../../Login/Login';
+import App from './../../App';
 
 
 const instance = axios.create({
@@ -10,6 +12,7 @@ const instance = axios.create({
 })
 
 const WList = (props) => {
+
 
     // instance.post('/create-db-wn', () => {})
     // instance.post('/create-db-wn2', () => {}) 
@@ -23,6 +26,18 @@ const WList = (props) => {
     const [whiteList, setWhiteList] = useState([]);
     const [whiteNameList, setWhiteNameList] = useState([]);
     const [whiteNameList2, setWhiteNameList2] = useState([]);
+
+    useEffect(() => {
+        instance.get(`/wNum`).then((res) => {
+            setWhiteList(res.data.wNum);
+        })
+        instance.get(`/wNames`).then((res) => {
+            setWhiteNameList(res.data.wNames);
+        })
+        instance.get(`/wNames2`).then((res) => {
+            setWhiteNameList2(res.data.wNames2);
+        })
+    }, []);
 
 
     
@@ -40,13 +55,13 @@ const WList = (props) => {
                 console.log(res + "name is added in whiteNamelist");
             })
         }
-
+            //добавление имен в вайтлистнейм2 для id_name
         if (titleName !== '') {
             instance.post('/wNames2', {
                 name: titleName
             }).then((res) => {
                 setWhiteNameList2([...whiteNameList2, { name: titleName }])                
-                console.log(res + "name is added in whiteNamelist");
+                console.log(res + "name is added in whiteNamelist2");
             })
         }
 
@@ -61,6 +76,7 @@ const WList = (props) => {
                 console.log(res + "data is added in whitelist");
             })
         }
+        Location.reload()
     }
 
 
@@ -87,22 +103,13 @@ const WList = (props) => {
     }
 
     
-    useEffect(() => {
-        instance.get(`/wNum`).then((res) => {
-            setWhiteList(res.data.wNum);
-        })
-        instance.get(`/wNames`).then((res) => {
-            setWhiteNameList(res.data.wNames);
-        })
-        instance.get(`/wNames2`).then((res) => {
-            setWhiteNameList2(res.data.wNames2);
-        })
-    }, []);
 
-    // let isAuth = true
-    // if (isAuth === false) {
-    //     return <Login />
-    // }
+
+
+
+
+    
+    
     return <div className="white">
 
         {/* <span>whiteList</span> */}
@@ -134,6 +141,8 @@ const WList = (props) => {
             <button onClick={onDelName}>Удалить</button>
         </div>
         <div className={stylab.names}>
+            
+        
             {whiteNameList.map((w) => {
                 return (
                     <List determinant={determinant}

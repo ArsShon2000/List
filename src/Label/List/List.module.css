@@ -16,3 +16,16 @@
   /* padding: 10px;
   margin-left: 100px; */
 }
+
+.name a {
+  text-decoration: none;
+  color: aliceblue;
+}
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+}
+.box>* {
+  flex: 1 1 160px;
+}
