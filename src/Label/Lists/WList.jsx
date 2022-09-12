@@ -4,6 +4,7 @@ import stylab from "./WList.module.css"
 import axios from "axios";
 import Login from './../../Login/Login';
 import App from './../../App';
+import FirstList from "../List/FirstList";
 
 
 const instance = axios.create({
@@ -24,73 +25,59 @@ const WList = (props) => {
     let [titleForDel, setTitleForDel] = useState('');
     let [titleOwner, setTitleOwner] = useState('');
     const [whiteList, setWhiteList] = useState([]);
-    const [whiteNameList, setWhiteNameList] = useState([]);
-    const [whiteNameList2, setWhiteNameList2] = useState([]);
 
     useEffect(() => {
         instance.get(`/wNum`).then((res) => {
             setWhiteList(res.data.wNum);
         })
-        // instance.get(`/wNames`).then((res) => {
-        //     setWhiteNameList(res.data.wNames);
-        // })
-        // instance.get(`/wNames2`).then((res) => {
-        //     setWhiteNameList2(res.data.wNames2);
-        // })
     }, []);
 
 
-
-
-    let idName = whiteNameList2.length + 1
+    // let idName = whiteNameList2.length + 1
     let onAddName = () => {
-
-
         //добавление имен в вайтлистнейм
-        if (titleName !== '') {
-            instance.post('/wNames', {
-                name: titleName
-            }).then((res) => {
-                setWhiteNameList([...whiteNameList, { name: titleName }])
-                console.log(res + "name is added in whiteNamelist");
-            })
-        }
+        // if (titleName !== '') {
+        //     instance.post('/wNames', {
+        //         name: titleName
+        //     }).then((res) => {
+        //         setWhiteNameList([...whiteNameList, { name: titleName }])
+        //         console.log(res + "name is added in whiteNamelist");
+        //     })
+        // }
         //добавление имен в вайтлистнейм2 для id_name
         if (titleName !== '') {
             instance.post('/wNames2', {
                 name: titleName
-            }).then((res) => {
-                setWhiteNameList2([...whiteNameList2, { name: titleName }])
-                console.log(res + "name is added in whiteNamelist2");
             })
+            // .then((res) => {
+            //     setWhiteNameList2([...whiteNameList2, { name: titleName }])
+            //     console.log(res + "name is added in whiteNamelist2");
+            // })
         }
 
         //добавление номеров в вайтлистнам
         if (title !== '' && titleName !== '') {
             instance.post('/wNum', {
                 carNumber: title,
-                name: titleName,
-                id_name: idName
+                name: titleName
             }).then((res) => {
-                setWhiteList([...whiteList, { name: titleName, id_name: idName, car_number: title }])
+                setWhiteList([...whiteList, { name: titleName, car_number: title }])
                 console.log(res + "data is added in whitelist");
             })
         }
         Location.reload()
     }
 
-
-    // console.log(whiteList)
     // удаление по владельцу
     let onDelName = () => {
-        if (titleOwner !== '') {
-            instance.delete(`/wNames/${titleOwner}`).then((res) => {
-                setWhiteNameList(whiteNameList.filter((e) => {
-                    return e.name !== titleOwner
-                }))
-                console.log(res + "name is deleted in whitelist");
-            })
-        }
+        // if (titleOwner !== '') {
+        //     instance.delete(`/wNum/${titleOwner}`).then((res) => {
+        //         setWhiteNameList(whiteNameList.filter((e) => {
+        //             return e.name !== titleOwner
+        //         }))
+        //         console.log(res + "name is deleted in whitelist");
+        //     })
+        // }
         //удаление по номеру
         if (titleForDel !== '') {
             instance.delete(`/wNum/${titleForDel}`).then((res) => {
@@ -102,15 +89,13 @@ const WList = (props) => {
         }
     }
 
-
-
-
-
+    // получаем все айди номера из вайтлиста 
     let namesNoSort = []
     for (let i = 0; i < whiteList.length; i++) {
         namesNoSort[i] = whiteList[i].id_name
     }
 
+    // избавляемся от дулирования
     function unique(arr) {
         let result = [];
 
@@ -121,30 +106,24 @@ const WList = (props) => {
         }
         return result;
     }
+
     unique(namesNoSort);
 
-    debugger
+// по айди получаем имена водителей
     let names = []
-    for (let i = 0; i < unique(namesNoSort).length-2; i++) {
-        names[i] = whiteList[unique(namesNoSort)[i]].name
-
-        // console.log(unique(namesNoSort)[i])
-        // for (let j = 0; j < unique(namesNoSort).length; j++) {
-        //     if (unique(namesNoSort)[j] !== whiteList[i].id_name) {
-        //         console.log(i)
-        //         console.log(whiteList[i].name)
-        //         names[i] = whiteList[i].name
-        //         break
-        //     }
-        // }
+    for (let i = 0; i < unique(namesNoSort).length; i++) {
+        console.log(i + " i")
+        console.log(unique(namesNoSort)[i] + " namenosort")
+        for (let j = 0; j < whiteList.length; j++) {
+            console.log(whiteList[j].id_name + "idname")
+            console.log(j + " j")
+            if (unique(namesNoSort)[i] === whiteList[j].id_name) {
+                names[i] = whiteList[j].name
+            }
+        }
     }
 
-
-
-
     return <div className="white">
-
-        {/* <span>whiteList</span> */}
         <div>
             <input
                 type="text"
@@ -174,16 +153,29 @@ const WList = (props) => {
         </div>
         <div className={stylab.names}>
 
-
-
             <div>
                 {names.map((w) => {
                     return (
-                        <List
+                        <FirstList determinant={determinant}
                             names={w}
+                            // id_name={w}
+                            namesNoSort={unique(namesNoSort)}
+                            whiteList={whiteList}
                         />
                     )
                 })}
+
+
+                
+                {/* {unique(namesNoSort).map((w) => {
+                    return (
+                        <List
+                            id_name = {w}
+                            whiteList={whiteList}
+                            
+                        />
+                    )
+                })} */}
             </div>
 
             {/* {whiteNameList.map((w) => {

@@ -19,20 +19,9 @@ const List = (props) => {
   const [whiteList, setWhiteList] = useState([]);
   const [whiteNameList, setWhiteNameList] = useState([]);
 
-  useEffect(() => {
-    instance.get(`/wNum`).then((res) => {
-      setWhiteList(res.data.wNum);
-    })
-    instance.get(`/wNames`).then((res) => {
-      setWhiteNameList(res.data.wNames);
-    })
-  }, []);
-
-
-
   // удаление имени из таб wNum
   let onDelName = () => {
-    instance.delete(`/wNames/${id_name}`).then((res) => {
+    instance.delete(`/wNum/${id_name}`).then((res) => {
       setWhiteNameList(whiteNameList.filter((e) => {
         return e.id_name !== id_name
       }))
@@ -79,22 +68,22 @@ const List = (props) => {
 
       {props.names}&nbsp;&nbsp;&nbsp;
 
-         {/* {props.whiteList.map((n) => {
+         {props.whiteList.map((n) => {
           return <ListName id_name={id_name}
             number={n.car_number}
             wIdNAme={n.id_name}
           />
-        })} */}
+        })}
         
         {/* выводится номера  */}
 
-        {/* <input
+        <input
           type="text"
           value={title} onChange={(e) => setTitle(e.currentTarget.value)}
           placeholder="Номер машины"
         />
         <button onClick={onAddName}>Добавить</button>
-        <button onClick={onDelName}>Удалить</button>   */}
+        <button onClick={onDelName}>Удалить</button>  
 
 
     </div>

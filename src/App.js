@@ -7,7 +7,6 @@ import GenCarNumber from './GenCarNum/GenCarNumber';
 import Login from './Login/Login';
 import Navbar from './Navbar/Navbar';
 import WList from './Label/Lists/WList';
-import Label from './Label/Label';
 import BList from './Label/Lists/BList';
 import Options from './options/options';
 import axios from "axios";
@@ -24,14 +23,16 @@ const instance = axios.create({
 let App = (props) => {
 
   const [loginList, setLoginList] = useState([]);
-let bool = loginList.length
+  let bool = loginList.length
 
- 
-  useEffect(() => {
-    instance.get(`/login`).then((res) => {
-        setLoginList(res.data.login);
-    })
-}, []);
+  
+    useEffect(() => {
+      if(bool < 1){
+      instance.get(`/login`).then((res) => {
+          setLoginList(res.data.login);
+      })
+    }
+  }, []);
 
 
 const refresh = () =>{
@@ -44,10 +45,10 @@ const refresh = () =>{
         <Header />
         <VideoBar />
         <GenCarNumber />
-        {bool != 1 ? <Login /> : 
+        {bool !== 1 ? <Login /> : 
         <Navbar />  }
         <div className="App-wrapper-content ">
-        {bool != 1 ? refresh() : <Routes>
+        {bool !== 1 ? refresh() : <Routes>
             <Route path='/wlist' element={<WList />} />
             <Route path='/blist' element={<BList />} />
             <Route path='/options' element={<Options />} />
