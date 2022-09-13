@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import List from "../List/List";
 import stylab from "./WList.module.css"
 import axios from "axios";
-import Login from './../../Login/Login';
-import App from './../../App';
-import FirstList from "../List/FirstList";
 
 
 const instance = axios.create({
@@ -14,12 +11,14 @@ const instance = axios.create({
 
 const WList = (props) => {
 
+    
 
     // instance.post('/create-db-wn', () => {})
     // instance.post('/create-db-wn2', () => {}) 
     // instance.post('/create-db-w', () => {}) 
-
+// опеределяет в какой странице происходит действие
     let determinant = "white"
+    
     let [title, setTitle] = useState('');
     let [titleName, setTitleName] = useState('');
     let [titleForDel, setTitleForDel] = useState('');
@@ -67,20 +66,11 @@ const WList = (props) => {
         }
         Location.reload()
     }
-
+    debugger
     // удаление по владельцу
     let onDelName = () => {
-        // if (titleOwner !== '') {
-        //     instance.delete(`/wNum/${titleOwner}`).then((res) => {
-        //         setWhiteNameList(whiteNameList.filter((e) => {
-        //             return e.name !== titleOwner
-        //         }))
-        //         console.log(res + "name is deleted in whitelist");
-        //     })
-        // }
-        //удаление по номеру
         if (titleForDel !== '') {
-            instance.delete(`/wNum/${titleForDel}`).then((res) => {
+            instance.delete(`/wNum/cn/${titleForDel}`).then((res) => {
                 setWhiteList(whiteList.filter((e) => {
                     return e.car_number !== titleForDel
                 }))
@@ -106,22 +96,35 @@ const WList = (props) => {
         }
         return result;
     }
-
+// отсорированные айдишки
     unique(namesNoSort);
 
 // по айди получаем имена водителей
     let names = []
     for (let i = 0; i < unique(namesNoSort).length; i++) {
-        console.log(i + " i")
-        console.log(unique(namesNoSort)[i] + " namenosort")
         for (let j = 0; j < whiteList.length; j++) {
-            console.log(whiteList[j].id_name + "idname")
-            console.log(j + " j")
             if (unique(namesNoSort)[i] === whiteList[j].id_name) {
                 names[i] = whiteList[j].name
             }
         }
     }
+
+
+    // let finalWhiteList = [[], []]
+    // for (let j = 0; j < unique(namesNoSort).length; j++) {
+
+    //     finalWhiteList['idName'][j] = unique(namesNoSort)[j]
+    //     finalWhiteList['sortName'][j] = names[j]
+    // }
+    // for (let j = 0; j < names.length; j++) {
+        
+    // }
+
+    let finalWhiteList = unique(namesNoSort).map((idName, sortName) => ({
+        idName, sortName: names[sortName]
+    }))
+    
+
 
     return <div className="white">
         <div>
@@ -154,12 +157,11 @@ const WList = (props) => {
         <div className={stylab.names}>
 
             <div>
-                {names.map((w) => {
+                {finalWhiteList.map((w) => {
                     return (
-                        <FirstList determinant={determinant}
-                            names={w}
-                            // id_name={w}
-                            namesNoSort={unique(namesNoSort)}
+                        <List determinant={determinant}
+                            names={w.sortName}
+                            id_name={w.idName}
                             whiteList={whiteList}
                         />
                     )

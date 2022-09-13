@@ -14,25 +14,27 @@ const instance = axios.create({
 const List = (props) => {
 
   let id_name = props.id_name
+  // let whiteList = props.whiteList
 
+  
   let [title, setTitle] = useState('');
   const [whiteList, setWhiteList] = useState([]);
-  const [whiteNameList, setWhiteNameList] = useState([]);
-
+  
+  debugger
   // удаление имени из таб wNum
   let onDelName = () => {
-    instance.delete(`/wNum/${id_name}`).then((res) => {
-      setWhiteNameList(whiteNameList.filter((e) => {
+    instance.delete(`/wNum/id/${id_name}`).then((res) => {
+      setWhiteList(whiteList.filter((e) => {
         return e.id_name !== id_name
       }))
-      console.log(res + "name is deleted in whiteNameList");
+      console.log(res + " owner is deleted in whiteNameList");
     })
   }
   let onAddName = () => {
     //добавление номеров в вайтлистнам
     if (props.determinant === "white") {
       if (title !== '') {
-        instance.post('/wNum', {
+        instance.post('/wNumWithId', {
           carNumber: title,
           name: props.names,
           id_name: props.id_name
@@ -62,11 +64,10 @@ const List = (props) => {
 
 
   return (
-    <div className={stylist.name} >
+    <view className={stylist.name} >
       {/* выводится имя */}
-
-
       {props.names}&nbsp;&nbsp;&nbsp;
+
 
          {props.whiteList.map((n) => {
           return <ListName id_name={id_name}
@@ -84,9 +85,9 @@ const List = (props) => {
         />
         <button onClick={onAddName}>Добавить</button>
         <button onClick={onDelName}>Удалить</button>  
+        <br></br>
 
-
-    </div>
+    </view>
   )
 }
 
