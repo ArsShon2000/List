@@ -20,7 +20,7 @@ const List = (props) => {
   let [title, setTitle] = useState('');
   const [whiteList, setWhiteList] = useState([]);
   
-  debugger
+  
   // удаление имени из таб wNum
   let onDelName = () => {
     instance.delete(`/wNum/id/${id_name}`).then((res) => {

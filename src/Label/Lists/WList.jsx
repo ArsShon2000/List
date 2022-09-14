@@ -66,7 +66,7 @@ const WList = (props) => {
         }
         Location.reload()
     }
-    debugger
+    
     // удаление по владельцу
     let onDelName = () => {
         if (titleForDel !== '') {

@@ -19,11 +19,11 @@ const Navbar = () => {
   
     const [loginList, setLoginList] = useState([]);
 
-  useEffect(() => {
-    instance.get(`/login`).then((res) => {
-        setLoginList(res.data.login);
-    })
-}, []);
+//   useEffect(() => {
+//     instance.get(`/login`).then((res) => {
+//         setLoginList(res.data.login);
+//     })
+// }, []);
 
 
     let logOut = () => {
