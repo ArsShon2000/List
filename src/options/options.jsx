@@ -1,13 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Login from './../Login/Login';
-
-
-
-const instance = axios.create({
-  withCredentials: true,
-  baseURL: 'http://127.0.0.1:5000',
-})
+import React, { useState } from "react";
 
 const Options = () => {
 

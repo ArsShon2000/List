@@ -10,12 +10,10 @@ const instance = axios.create({
 })
 
 const WList = (props) => {
-
-    
-
     // instance.post('/create-db-wn', () => {})
     // instance.post('/create-db-wn2', () => {}) 
     // instance.post('/create-db-w', () => {}) 
+
 // опеределяет в какой странице происходит действие
     let determinant = "white"
     
@@ -31,52 +29,46 @@ const WList = (props) => {
         })
     }, []);
 
-
     // let idName = whiteNameList2.length + 1
     let onAddName = () => {
-        //добавление имен в вайтлистнейм
-        // if (titleName !== '') {
-        //     instance.post('/wNames', {
-        //         name: titleName
-        //     }).then((res) => {
-        //         setWhiteNameList([...whiteNameList, { name: titleName }])
-        //         console.log(res + "name is added in whiteNamelist");
-        //     })
-        // }
-        //добавление имен в вайтлистнейм2 для id_name
-        if (titleName !== '') {
-            instance.post('/wNames2', {
-                name: titleName
-            })
-            // .then((res) => {
-            //     setWhiteNameList2([...whiteNameList2, { name: titleName }])
-            //     console.log(res + "name is added in whiteNamelist2");
-            // })
-        }
+        console.log(7 < title.length)
+        console.log(10 > title.length)
 
-        //добавление номеров в вайтлистнам
-        if (title !== '' && titleName !== '') {
-            instance.post('/wNum', {
-                carNumber: title,
-                name: titleName
-            }).then((res) => {
-                setWhiteList([...whiteList, { name: titleName, car_number: title }])
-                console.log(res + "data is added in whitelist");
-            })
+        if((7 < title.length) && (10 > title.length) )
+        {
+            if (titleName !== '') {
+                instance.post('/wNames2', {
+                    name: titleName
+                })
+            }
+
+            //добавление номеров в вайтлистнам
+            if (title !== '' && titleName !== '') {
+                instance.post('/wNum', {
+                    carNumber: title,
+                    name: titleName
+                }).then((res) => {
+                    setWhiteList([...whiteList, { name: titleName, car_number: title }])
+                    console.log(res + "data is added in whitelist");
+                })
+            }
+            window.location.reload()
         }
-        Location.reload()
+        else {
+            alert("Неправильный формат номера!")
+        }
+        
     }
     
-    // удаление по владельцу
+    // удаление по номеру
     let onDelName = () => {
-        if (titleForDel !== '') {
             instance.delete(`/wNum/cn/${titleForDel}`).then((res) => {
                 setWhiteList(whiteList.filter((e) => {
+                    console.log(e.car_number + "-----------------------------------")
                     return e.car_number !== titleForDel
                 }))
-                console.log(res + "data is deleted in whitelist");
+                console.log(titleForDel + "data is deleted in whitelist");
             })
-        }
     }
 
     // получаем все айди номера из вайтлиста 
@@ -109,16 +101,6 @@ const WList = (props) => {
         }
     }
 
-
-    // let finalWhiteList = [[], []]
-    // for (let j = 0; j < unique(namesNoSort).length; j++) {
-
-    //     finalWhiteList['idName'][j] = unique(namesNoSort)[j]
-    //     finalWhiteList['sortName'][j] = names[j]
-    // }
-    // for (let j = 0; j < names.length; j++) {
-        
-    // }
 
     let finalWhiteList = unique(namesNoSort).map((idName, sortName) => ({
         idName, sortName: names[sortName]

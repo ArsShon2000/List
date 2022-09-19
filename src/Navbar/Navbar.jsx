@@ -3,9 +3,6 @@ import { NavLink } from "react-router-dom";
 import sty from "./Navbar.module.css"
 import axios from "axios";
 import { useState } from 'react';
-import { useEffect } from 'react';
-import App from './../App';
-import Login from "../Login/Login";
 
 
 

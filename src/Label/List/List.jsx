@@ -19,15 +19,16 @@ const List = (props) => {
   
   let [title, setTitle] = useState('');
   const [whiteList, setWhiteList] = useState([]);
-  
+
   
   // удаление имени из таб wNum
   let onDelName = () => {
     instance.delete(`/wNum/id/${id_name}`).then((res) => {
       setWhiteList(whiteList.filter((e) => {
+        console.log(e.id_name + "-----------------------------------")
         return e.id_name !== id_name
       }))
-      console.log(res + " owner is deleted in whiteNameList");
+      console.log(id_name + " owner is deleted in whiteNameList");
     })
   }
   let onAddName = () => {
@@ -61,12 +62,17 @@ const List = (props) => {
     }
   }
 
+  const onNameClick = () => {
+    titleOwner = 
+    return 
+  }
+
 
 
   return (
     <view className={stylist.name} >
       {/* выводится имя */}
-      {props.names}&nbsp;&nbsp;&nbsp;
+      <span onClick={onNameClick}>{props.names}</span>&nbsp;&nbsp;&nbsp;
 
 
          {props.whiteList.map((n) => {

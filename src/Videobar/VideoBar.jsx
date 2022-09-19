@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import sample from "./video.mp4"
+import React from "react";
+// import sample from "./video.mp4"
 import styleVideo from "./VideoBar.module.css"
-import car from "./img_2.jpg"
+// import car from "./img_2.jpg"
 
 const VideoBar = (props) => {
 
@@ -17,7 +17,7 @@ const VideoBar = (props) => {
     // }, []);
 
     // const car = '../img_2.jpg'
-    console.log(car)
+    // console.log(car)
     
     
 

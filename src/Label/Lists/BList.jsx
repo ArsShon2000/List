@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import List from "../List/List";
 import stylab from "./BList.module.css"
 import axios from "axios";
-import Login from './../../Login/Login';
 
 
 const instance = axios.create({
