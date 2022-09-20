@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import List from "../List/List";
 import stylab from "./WList.module.css"
 import axios from "axios";
+import Modal from "./Modal/Modal";
+import ModalForDel from "./ModalForDel/ModalForDel";
+
 
 
 const instance = axios.create({
@@ -17,6 +20,10 @@ const WList = (props) => {
 // опеределяет в какой странице происходит действие
     let determinant = "white"
     
+    // модальное окно
+    const [modalActive, setModalActive] = useState(false)
+
+    // связано с данными
     let [title, setTitle] = useState('');
     let [titleName, setTitleName] = useState('');
     let [titleForDel, setTitleForDel] = useState('');
@@ -108,9 +115,27 @@ const WList = (props) => {
     
 
 
-    return <div className="white">
+    return <div className={stylab.white}>
         <div>
-            <input
+            <button className={stylab.open_btn} onClick={() => setModalActive(true)}>Добавить</button>
+            <Modal active={modalActive} setActive={setModalActive}>
+                <input className="type-2"
+                    type="text"
+                    value={titleName} onChange={(e) => setTitleName(e.currentTarget.value)}
+                    placeholder="Владелец"
+                />
+                <input className="type-2"
+                    type="text"
+                    value={title} onChange={(e) => setTitle(e.currentTarget.value)}
+                    placeholder="Номер машины"
+                />
+                <button className="btn_add_dates" onClick={onAddName}>Добавить</button>
+            </Modal>
+
+            <br></br>
+            <br></br>
+            
+            {/* <input
                 type="text"
                 value={title} onChange={(e) => setTitle(e.currentTarget.value)}
                 placeholder="Номер машины"
@@ -134,7 +159,7 @@ const WList = (props) => {
                 value={titleOwner} onChange={(e) => setTitleOwner(e.currentTarget.value)}
                 placeholder="Удалить владельца"
             />
-            <button onClick={onDelName}>Удалить</button>
+            <button onClick={onDelName}>Удалить</button> */}
         </div>
         <div className={stylab.names}>
 
@@ -148,31 +173,29 @@ const WList = (props) => {
                         />
                     )
                 })}
-
-
-                
-                {/* {unique(namesNoSort).map((w) => {
-                    return (
-                        <List
-                            id_name = {w}
-                            whiteList={whiteList}
-                            
-                        />
-                    )
-                })} */}
             </div>
-
-            {/* {whiteNameList.map((w) => {
-                return (
-                    <List determinant={determinant}
-                        names={w.name}
-                        id_name={w.id_name}
-                        // отправляю в мап второй список (полный)
-                        whiteList={whiteList} 
-                        />
-                )
-            })} */}
         </div>
+            {/* <div>
+                <style type="text/css" dangerouslySetInnerHTML={
+                    {__html: "\n   TABLE {\n    width: 300px;    border-collapse: collapse;\n   }\n   TD, TH {\n    padding: 3px;\n    border: 1px solid black;\n   }\n   TH {\n    background: #b0e0e6;\n   }\n  " }} />
+                <table>
+                    <tbody><tr>
+                        <th>&nbsp;</th><th>2004</th><th>2005</th><th>2006</th>
+                        </tr>
+                        <tr>
+                        <td>Рубины</td><td>43</td><td>51</td><td>79</td>
+                        </tr>
+                        <tr>
+                        <td>Изумруды</td><td>28</td><td>34</td><td>48</td>
+                        </tr>
+                        <tr>
+                        <td>Сапфиры</td><td>29</td><td>57</td><td>36</td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div> */}
+
+
     </div>
 }
 

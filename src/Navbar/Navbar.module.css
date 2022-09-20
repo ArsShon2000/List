@@ -1,24 +1,29 @@
 .nav {
     grid-area: m;    
     margin-top: 2px;
-    width: 140px;
-    height: 110px;
-    background-color: rgb(67, 67, 68);
-    padding: 20px;
+    margin-right: 5px;
+    width: 160px;
+    height: fit-content;
+    background-color: rgb(190, 190, 207);
+    padding: 10px;
     font-size: 19px;
+    border-radius: 5px;
+    margin-top: 10px;
   }
+
+  .item {
+    padding: 2px;
+  } 
 
   .item a {
     text-decoration: none;
-    color:rgb(255, 255, 255);
-    text-shadow:  1px 1px 1px rgb(4, 79, 255),
-                  2px 2px 1px rgb(0, 0, 0);
+    color:rgb(95, 95, 95);
   }
 
   .item a.active {
-    color: gold;
-    text-shadow:  1px 1px 1px rgb(90, 89, 87),
-                  2px 2px 1px red;     
+    color: rgb(0, 0, 0); 
+    font-size: 17px;
+    font-weight: bold;
   }
 
   .nav img{
@@ -26,5 +31,24 @@
     border-radius: 30px;
     
   }
+
+  .button {
+    background-color: azure;
+    padding: 3px 8px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #d3d3d3;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .item  button:active {
+    background-color: rgb(112, 112, 112);
+  }
+
+  .button:hover {
+    background: #e6e6ff;
+    color: white;
+}
+
 
  

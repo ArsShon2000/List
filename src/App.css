@@ -1,16 +1,20 @@
 .App {
   display: grid;
   margin: auto;
-  width: 1200px;
-  height: 570px;
+  width: auto;
+  height: 977px;
   grid-template-areas:
     "h h h"
     "n m c"
     "g e e";
-  background-color: rgb(146, 133, 135);
+  background-color: rgb(124, 156, 185);
 
   grid-template-rows: 50px 1fr 1fr;
   grid-template-columns: 1fr 7fr 20fr;
+}
+
+* {
+  /* box-sizing: border-box; */
 }
 
 .App-wrapper-content {

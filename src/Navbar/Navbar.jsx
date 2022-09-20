@@ -39,23 +39,23 @@ const Navbar = () => {
     return (
         <nav className={sty.nav}>
             <div className={sty.item}>
-                <NavLink to="/wlist" className={({ isActive }) =>
-      isActive ? sty.active : undefined}>Белый список</NavLink>
+                <button className={sty.button}><NavLink to="/wlist" className={({ isActive }) =>
+      isActive ? sty.active : undefined}>Белый список</NavLink></button>
             </div>
             <div className={sty.item}>
-                <NavLink to="/blist" className={({ isActive }) =>
-      isActive ? sty.active : undefined}>Черный список</NavLink>
+            <button className={sty.button}><NavLink to="/blist" className={({ isActive }) =>
+      isActive ? sty.active : undefined}>Черный список</NavLink></button>
             </div>
             <div className={sty.item}>
-                <NavLink to="/options" className={({ isActive }) =>
-      isActive ? sty.active : undefined}>Настройки</NavLink>
+            <button className={sty.button}><NavLink to="/options" className={({ isActive }) =>
+      isActive ? sty.active : undefined}>Настройки</NavLink></button>
             </div>
             <div className={sty.item}>
                 {/* <NavLink to="/login" className={({ isActive }) =>
       isActive ? sty.active : undefined}
       onClick={logOut}>Выход</NavLink> */}
       
-      <NavLink to="/" onClick={logOut}>Выход</NavLink>
+      <button className={sty.button}><NavLink to="/" onClick={logOut}>Выход</NavLink></button>
             </div>
         </nav>
     )

@@ -63,8 +63,7 @@ const List = (props) => {
   }
 
   const onNameClick = () => {
-    titleOwner = 
-    return 
+    
   }
 
 
