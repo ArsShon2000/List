@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import stylist from "./List.module.css"
 import ListName from "./ListName";
 import axios from "axios";
+import ModalCarNumber from "./ModalCarNumber/ModalCarNumber";
 
 
 
@@ -16,11 +17,13 @@ const List = (props) => {
   let id_name = props.id_name
   // let whiteList = props.whiteList
 
-  
+    // модальное окно
+    const [modalActive, setModalActive] = useState(false)
+
   let [title, setTitle] = useState('');
   const [whiteList, setWhiteList] = useState([]);
 
-  
+
   // удаление имени из таб wNum
   let onDelName = () => {
     instance.delete(`/wNum/id/${id_name}`).then((res) => {
@@ -62,37 +65,54 @@ const List = (props) => {
     }
   }
 
-  const onNameClick = () => {
-    
-  }
-
+  
 
 
   return (
-    <view className={stylist.name} >
+    <div className={stylist.name} >
       {/* выводится имя */}
-      <span onClick={onNameClick}>{props.names}</span>&nbsp;&nbsp;&nbsp;
+      <div className={stylist.divName}>
+        <table className={stylist.maintable}>
+          <table className={stylist.table}>
+            <tbody>
+              <tr>
+                <th className={stylist.th} onClick={() => setModalActive(true)}>
+                  <span>&nbsp;{props.names}</span>&nbsp;&nbsp;&nbsp;
+                  </th>
+              </tr>
+            </tbody>
+          </table>
+        </table>
+      </div>
+
+      <div className={stylist.divNumbers}>
+        <ModalCarNumber active={modalActive} setActive={setModalActive}>
+          {props.names}
+          {props.whiteList.map((n) => {
+            return <ListName id_name={id_name}
+              number={n.car_number}
+              wIdNAme={n.id_name}
+            />
+          })}
+          <br></br>
+          <input className="type-2"
+            type="text"
+            value={title} onChange={(e) => setTitle(e.currentTarget.value)}
+            placeholder="Номер машины"
+          /><br></br>
+          <button onClick={onAddName}>Добавить</button>&nbsp;
+          <button onClick={onDelName}>Удалить</button>
+          <br></br>
+
+        </ModalCarNumber>
+
+      </div>
+
+      {/* выводится номера  */}
 
 
-         {props.whiteList.map((n) => {
-          return <ListName id_name={id_name}
-            number={n.car_number}
-            wIdNAme={n.id_name}
-          />
-        })}
-        
-        {/* выводится номера  */}
 
-        <input
-          type="text"
-          value={title} onChange={(e) => setTitle(e.currentTarget.value)}
-          placeholder="Номер машины"
-        />
-        <button onClick={onAddName}>Добавить</button>
-        <button onClick={onDelName}>Удалить</button>  
-        <br></br>
-
-    </view>
+    </div>
   )
 }
 

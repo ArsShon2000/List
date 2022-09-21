@@ -1,31 +1,59 @@
 .name {
-  margin-top: 10px;
-  /* padding: 10px; */
-  color: aliceblue;
-
-
+  /* color: black; */
+  display: grid;
+  grid-template-areas:
+  "n d";
+  grid-template-rows: px fr 5fr;
+  grid-template-columns: 228px 7fr 20fr;
 }
 
-.name span{
-  padding: 0px;
-  margin-left: 0px
+.divName {
+  grid-area: n;
 }
 
-.names {
-  /* position: absolute; */
-  /* padding: 10px;
-  margin-left: 100px; */
+.divNumbers{
+  display: flex;
+  grid-area: d;
 }
+
 
 .name a {
   text-decoration: none;
-  color: aliceblue;
+  color: black;
 }
 
-.box {
-  display: flex;
-  flex-wrap: wrap;
+
+
+.maintable{
+  /* background-color: rgb(190, 190, 207); */
+  /* border: 0.01px solid rgb(152, 152, 153); */
+  /* border-radius: 3px; */
+  background-color: rgb(0, 0, 0);
+  margin: -1px;
 }
-.box>* {
-  flex: 1 1 160px;
+
+.table {
+  width: 190px;
+  border-collapse: collapse;
+  text-align: left;
+
+}
+
+TD, TH {
+  padding: 0px;
+  font-weight: normal;
+}
+
+.th {
+  background: rgb(255, 255, 255);
+  /* border-radius: 3px; */
+  cursor: pointer;
+}
+
+th:hover {
+  background: rgb(219, 219, 219);
+}
+
+th:active {
+  background: rgb(148, 148, 148);
 }

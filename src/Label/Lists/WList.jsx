@@ -3,7 +3,6 @@ import List from "../List/List";
 import stylab from "./WList.module.css"
 import axios from "axios";
 import Modal from "./Modal/Modal";
-import ModalForDel from "./ModalForDel/ModalForDel";
 
 
 
@@ -162,38 +161,21 @@ const WList = (props) => {
             <button onClick={onDelName}>Удалить</button> */}
         </div>
         <div className={stylab.names}>
-
             <div>
-                {finalWhiteList.map((w) => {
-                    return (
-                        <List determinant={determinant}
-                            names={w.sortName}
-                            id_name={w.idName}
-                            whiteList={whiteList}
-                        />
-                    )
-                })}
+                <div>
+                                {finalWhiteList.map((w) => {
+                                    return (
+                                        <List determinant={determinant}
+                                            names={w.sortName}
+                                            id_name={w.idName}
+                                            whiteList={whiteList}
+                                        />
+                                    )
+                                })}
+                            </div>
             </div>
+
         </div>
-            {/* <div>
-                <style type="text/css" dangerouslySetInnerHTML={
-                    {__html: "\n   TABLE {\n    width: 300px;    border-collapse: collapse;\n   }\n   TD, TH {\n    padding: 3px;\n    border: 1px solid black;\n   }\n   TH {\n    background: #b0e0e6;\n   }\n  " }} />
-                <table>
-                    <tbody><tr>
-                        <th>&nbsp;</th><th>2004</th><th>2005</th><th>2006</th>
-                        </tr>
-                        <tr>
-                        <td>Рубины</td><td>43</td><td>51</td><td>79</td>
-                        </tr>
-                        <tr>
-                        <td>Изумруды</td><td>28</td><td>34</td><td>48</td>
-                        </tr>
-                        <tr>
-                        <td>Сапфиры</td><td>29</td><td>57</td><td>36</td>
-                        </tr>
-                    </tbody>
-                </table>
-        </div> */}
 
 
     </div>

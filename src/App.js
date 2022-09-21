@@ -49,8 +49,8 @@ const refresh = () =>{
         <Navbar />  }
         <div className="App-wrapper-content ">
         {bool !== 1 ? refresh() : <Routes>
-            <Route path='/wlist' element={<WList />} />
-            <Route path='/blist' element={<BList />} />
+            <Route path='/wlist/'  element={<WList />} />
+            <Route path='/blist/' element={<BList />} />
             <Route path='/options' element={<Options />} />
             {/* <Route path='/login' element={<Login />} /> */}
           </Routes>

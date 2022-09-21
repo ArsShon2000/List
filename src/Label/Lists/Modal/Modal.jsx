@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./modal.css"
 // import mod from "./modal.module.css"
 
 const Modal = ({active, setActive, children}) => {
-    let [title, setTitle] = useState('');
-    let [titleName, setTitleName] = useState('');
     
     return(
         <div className={active ? "modal active" : "modal"} onClick={() => setActive(false)}>
