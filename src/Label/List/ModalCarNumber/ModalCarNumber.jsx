@@ -3,15 +3,17 @@ import React, { useState } from "react";
 import "./ModalCarNumber.css"
 
 
-const ModalCarNumber = ({active, setActive, children}) => {
-    let [title, setTitle] = useState('');
-    let [titleName, setTitleName] = useState('');
-    
-    return(
+const ModalCarNumber = ({ active, setActive, children }) => {
+
+    return (<div>
         <div className={active ? "modalDates active" : "modalDates"} onClick={() => setActive(false)}>
-            <div className={active ? "modalDates__content active" : "modalDates__content" } onClick={e => e.stopPropagation()}>
+            
+            <div className={active ? "modalDates__content active" : "modalDates__content"} onClick={e => e.stopPropagation()}>
                 {children}
+                
             </div>
+        </div>
+        
         </div>
     )
 }

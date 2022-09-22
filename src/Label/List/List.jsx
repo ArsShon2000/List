@@ -69,12 +69,12 @@ const List = (props) => {
 
 
   return (
-    <div className={stylist.name} >
+    <div className={stylist.name}  >
       {/* выводится имя */}
-      <div className={stylist.divName}>
-        <table className={stylist.maintable}>
-          <table className={stylist.table}>
-            <tbody>
+      <div className={stylist.divName} >
+        <table  className={stylist.maintable}>
+          <table  className={stylist.table}>
+            <tbody >
               <tr>
                 <th className={stylist.th} onClick={() => setModalActive(true)}>
                   <span>&nbsp;{props.names}</span>&nbsp;&nbsp;&nbsp;
@@ -84,10 +84,10 @@ const List = (props) => {
           </table>
         </table>
       </div>
-
       <div className={stylist.divNumbers}>
+        
         <ModalCarNumber active={modalActive} setActive={setModalActive}>
-          {props.names}
+          <div style={{'text-align' : 'center'}}>{props.names}</div>
           {props.whiteList.map((n) => {
             return <ListName id_name={id_name}
               number={n.car_number}
@@ -95,13 +95,13 @@ const List = (props) => {
             />
           })}
           <br></br>
-          <input className="type-2"
+          <input className="type-2CN"
             type="text"
             value={title} onChange={(e) => setTitle(e.currentTarget.value)}
             placeholder="Номер машины"
           /><br></br>
-          <button onClick={onAddName}>Добавить</button>&nbsp;
-          <button onClick={onDelName}>Удалить</button>
+          <button className="btnForCN" onClick={onAddName}>Добавить</button>&nbsp;
+          <button className="btnForCN" onClick={onDelName}>Удалить</button>
           <br></br>
 
         </ModalCarNumber>

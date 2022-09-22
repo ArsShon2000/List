@@ -58,7 +58,7 @@ const WList = (props) => {
                     console.log(res + "data is added in whitelist");
                 })
             }
-            window.location.reload()
+            // window.location.reload()
         }
         else {
             alert("Неправильный формат номера!")
@@ -68,13 +68,13 @@ const WList = (props) => {
     
     // удаление по номеру
     let onDelName = () => {
-            instance.delete(`/wNum/cn/${titleForDel}`).then((res) => {
-                setWhiteList(whiteList.filter((e) => {
-                    console.log(e.car_number + "-----------------------------------")
-                    return e.car_number !== titleForDel
-                }))
-                console.log(titleForDel + "data is deleted in whitelist");
-            })
+        instance.delete(`/wNum/cn/${titleForDel}`).then((res) => {
+            setWhiteList(whiteList.filter((e) => {
+                console.log(e.car_number + "-----------------------------------")
+                return e.car_number !== titleForDel
+            }))
+            console.log(titleForDel + "data is deleted in whitelist");
+        })
     }
 
     // получаем все айди номера из вайтлиста 
@@ -111,6 +111,7 @@ const WList = (props) => {
     let finalWhiteList = unique(namesNoSort).map((idName, sortName) => ({
         idName, sortName: names[sortName]
     }))
+
     
 
 
@@ -161,19 +162,17 @@ const WList = (props) => {
             <button onClick={onDelName}>Удалить</button> */}
         </div>
         <div className={stylab.names}>
-            <div>
-                <div>
-                                {finalWhiteList.map((w) => {
-                                    return (
-                                        <List determinant={determinant}
-                                            names={w.sortName}
-                                            id_name={w.idName}
-                                            whiteList={whiteList}
-                                        />
-                                    )
-                                })}
-                            </div>
-            </div>
+                <div style={finalWhiteList.length > 10 ? {'height': '230px', 'width' : '210px', 'overflow-y':'scroll', 'overflow-x':'', 'display': 'grid' }: {}}>
+                    {finalWhiteList.map((w) => { 
+                        return (
+                            <List determinant={determinant}
+                                names={w.sortName}
+                                id_name={w.idName}
+                                whiteList={whiteList}
+                            />
+                        )
+                    })}
+                </div>
 
         </div>
 

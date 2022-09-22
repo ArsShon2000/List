@@ -1,50 +1,66 @@
 .modalDates {
     height: 100vh;
     width: 100vw;
-    /* background-color: rgba(70, 70, 70, 0.9); */
+    /* background-color: rgba(70, 70, 70, 0.1); */
     position: fixed;
     top: 0px;
     left: 0px;
     display: grid;
     /* align-items: center;
     justify-content: center; */
-    opacity: 0;
     pointer-events: none;
-    grid-template-rows:  2fr 2fr;
-    transition: 0.5s;
-    /* margin: 10px; */
-
 }
 
 .modalDates.active{
-    opacity: 1;
     pointer-events: all;
-    
 }
 
 .modalDates__content {
-    margin-left: 1682px;
+    margin-left: 1695px;
     margin-top: 110px;
     padding: 20px;
     border-radius: 3px;
-    background-color: rgb(205, 207, 216);
-    transform: scale(0.1);
-    transition: 0.4s all;
+    background-color: rgb(223, 228, 250);
+    opacity: 0;
     height: fit-content;
-    width: 190px;
+    width: 176px;
+    box-shadow:0 0 10px rgba(0,0,0,0.4);
+    /* transition: .5s box-shadow; */
 }
 
 .modalDates__content.active {
-transform: scale(1);
+/* transform: scale(1); */
+opacity: 1;
 }
 
-.type-2 {
-    /* background-color: #fafafa; */
+.type-2CN {
+    border-radius: 3px;
+    width: 161px;
+    height: 35px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
     border:0;
     box-shadow:0 0 4px rgba(0,0,0,0.3);
     transition: .3s box-shadow;
+
   }
-  .type-2:hover {
+  .type-2CN:hover {
     box-shadow:0 0 6px rgba(0,0,0,0.7);
   }
+
+  .btnForCN {
+    width: 85px;
+    background-color: azure;
+    padding: 3px 3px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #d3d3d3;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* font-weight: bold; */
+    box-shadow:0 0 4px rgba(67, 64, 224, 0.397);
+    transition: .3s box-shadow;
+  }
+
+  
 

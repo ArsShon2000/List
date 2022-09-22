@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import opStyle from "./Options.module.css"
 
 const Options = () => {
 
@@ -11,7 +12,7 @@ const Options = () => {
     let [Port, setPort] = useState('');
 
     let onConnect = () => {
-        alert('Connected')
+        alert('Error 404')
         
     }
 
@@ -21,7 +22,7 @@ const Options = () => {
 
 
     return (
-        <form>
+        <form className={opStyle.options}>
             <div>
                 <input
                     type="text"

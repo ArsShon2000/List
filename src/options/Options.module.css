@@ -1,13 +1,8 @@
-.nav {
-    grid-area: m;    
-    width: 160px;
+.options {  
     height: fit-content;
-    background-color: rgb(223, 228, 250);
     padding: 5px;
     font-size: 19px;
     border-radius: 5px;
-    margin-top: 10px;
-    overflow-y: auto,
   }
 
   .item {
@@ -16,11 +11,11 @@
 
   .item a {
     text-decoration: none;
-    color:rgb(71, 101, 105);
+    color:rgb(95, 95, 95);
   }
 
   .item a.active {
-    color: rgb(70, 98, 109); 
+    color: rgb(0, 0, 0); 
     font-size: 17px;
     font-weight: bold;
   }
