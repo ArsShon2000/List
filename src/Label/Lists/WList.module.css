@@ -7,11 +7,15 @@
 
   .names {
     position: absolute;
-    grid-area: w; 
     overflow: hidden;
   }
 
- 
+ .numbArea{
+  border-radius: 3px;
+  width: 216px;
+  height: 185px;
+  background-color: rgb(223, 228, 250);
+ }
 
   .open_btn {
     background-color: azure;
@@ -21,6 +25,7 @@
     border: 1px solid #d3d3d3;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     cursor: pointer;
+    width: 95px;
   }
 
   .open_btn:hover {

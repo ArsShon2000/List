@@ -26,7 +26,6 @@ const WList = (props) => {
     let [title, setTitle] = useState('');
     let [titleName, setTitleName] = useState('');
     let [titleForDel, setTitleForDel] = useState('');
-    let [titleOwner, setTitleOwner] = useState('');
     const [whiteList, setWhiteList] = useState([]);
 
     useEffect(() => {
@@ -112,12 +111,15 @@ const WList = (props) => {
         idName, sortName: names[sortName]
     }))
 
+    let nameListLength = finalWhiteList.length
     
 
 
     return <div className={stylab.white}>
         <div>
             <button className={stylab.open_btn} onClick={() => setModalActive(true)}>Добавить</button>
+            <button className={stylab.open_btn} onClick={() => setModalActive(true)}>Удалить</button>
+
             <Modal active={modalActive} setActive={setModalActive}>
                 <input className="type-2"
                     type="text"
@@ -162,21 +164,21 @@ const WList = (props) => {
             <button onClick={onDelName}>Удалить</button> */}
         </div>
         <div className={stylab.names}>
-                <div style={finalWhiteList.length > 10 ? {'height': '230px', 'width' : '210px', 'overflow-y':'scroll', 'overflow-x':'', 'display': 'grid' }: {}}>
-                    {finalWhiteList.map((w) => { 
-                        return (
-                            <List determinant={determinant}
-                                names={w.sortName}
-                                id_name={w.idName}
-                                whiteList={whiteList}
-                            />
-                        )
-                    })}
-                </div>
-
+            <div style={nameListLength > 10 ? { 'height': '230px', 'width': '210px', 'overflow-y': 'scroll', 'overflow-x': '', 'display': 'grid' } : {}}>
+                {finalWhiteList.map((w) => {
+                    return (
+                        <List determinant={determinant}
+                            names={w.sortName}
+                            id_name={w.idName}
+                            whiteList={whiteList}
+                            nameListLength={nameListLength}
+                        />
+                    )
+                })}
+            </div>
         </div>
-
-
+        <div style={nameListLength <= 10 ? { "margin-left": "200px" } : {"margin-left": "220px"}} className={stylab.numbArea}>
+        </div>
     </div>
 }
 

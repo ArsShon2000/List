@@ -28,7 +28,6 @@ const BList = (props) => {
     let [title, setTitle] = useState('');
     let [titleName, setTitleName] = useState('');
     let [titleForDel, setTitleForDel] = useState('');
-    let [titleOwner, setTitleOwner] = useState('');
     const [blackList, setBlackList] = useState([]);
 
     useEffect(() => {
@@ -145,7 +144,7 @@ const BList = (props) => {
 
         <div className={stylab.names}>
             <div>
-                <div style={finalWhiteList.length > 10 ? {'height': '230px', 'width' : '210px', 'overflow-y':'scroll', 'overflow-x':'', 'display': 'grid'}: {}}>
+                <div style={finalWhiteList.length > 10 ? { 'height': '230px', 'width': '210px', 'overflow-y': 'scroll', 'overflow-x': '', 'display': 'grid' } : {}}>
                     {finalWhiteList.map((b) => {
                         return (
                             <List determinant={determinant}
@@ -158,6 +157,8 @@ const BList = (props) => {
                     })}
                 </div>
             </div>
+        </div>
+        <div className={stylab.numbArea}>
         </div>
     </div>
 }

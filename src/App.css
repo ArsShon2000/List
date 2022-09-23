@@ -1,16 +1,16 @@
 .App {
   display: grid;
   margin: auto;
-  width: auto;
-  height: 977px;
+  height: 100vh;
+  width: 100vw;
   grid-template-areas:
     "h h h"
     "n m c"
     "g e e";
   background-color: rgb(124, 156, 185);
 
-  grid-template-rows: 50px 1fr 1fr;
-  grid-template-columns: 1fr 7fr 20fr;
+  grid-template-rows: 50px 12fr 12fr;
+  grid-template-columns: max-content 7fr 20fr;
   overflow: hidden;
 }
 

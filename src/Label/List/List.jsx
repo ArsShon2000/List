@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import stylist from "./List.module.css"
 import ListName from "./ListName";
 import axios from "axios";
@@ -16,12 +16,13 @@ const List = (props) => {
 
   let id_name = props.id_name
   // let whiteList = props.whiteList
-
+  let nameListLength = props.nameListLength
     // модальное окно
     const [modalActive, setModalActive] = useState(false)
 
   let [title, setTitle] = useState('');
   const [whiteList, setWhiteList] = useState([]);
+  
 
 
   // удаление имени из таб wNum
@@ -66,27 +67,23 @@ const List = (props) => {
   }
 
   
-
-
   return (
     <div className={stylist.name}  >
       {/* выводится имя */}
       <div className={stylist.divName} >
         <table  className={stylist.maintable}>
           <table  className={stylist.table}>
-            <tbody >
-              <tr>
-                <th className={stylist.th} onClick={() => setModalActive(true)}>
-                  <span>&nbsp;{props.names}</span>&nbsp;&nbsp;&nbsp;
+                <th className={stylist.th} >
+                  <input type="checkbox"></input>
+                  <span onClick={() => setModalActive(true)}>&nbsp;{props.names}</span>&nbsp;&nbsp;&nbsp;
                   </th>
-              </tr>
-            </tbody>
           </table>
         </table>
       </div>
       <div className={stylist.divNumbers}>
         
-        <ModalCarNumber active={modalActive} setActive={setModalActive}>
+        <ModalCarNumber nameListLength={nameListLength} active={modalActive} setActive={setModalActive}>
+
           <div style={{'text-align' : 'center'}}>{props.names}</div>
           {props.whiteList.map((n) => {
             return <ListName id_name={id_name}

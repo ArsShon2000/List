@@ -1,4 +1,5 @@
 .nav {
+  position: relative;
     grid-area: m;    
     width: 160px;
     height: fit-content;

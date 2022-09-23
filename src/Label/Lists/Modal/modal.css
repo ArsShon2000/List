@@ -12,6 +12,7 @@
     pointer-events: none;
     grid-template-rows:  2fr 2fr;
     transition: 0.5s;
+    z-index: 100;
 }
 
 .modal.active{

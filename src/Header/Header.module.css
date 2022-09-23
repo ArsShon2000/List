@@ -2,15 +2,8 @@
     grid-area: h;
   }
 
-  .names {
-    margin-top: 10px;
-  }
 
-  .loginBlock {
-    position: relative;
-    float: right;
-    padding: 10px;
-  }
+
 
   .loginBlock a {
     padding: 10px;
