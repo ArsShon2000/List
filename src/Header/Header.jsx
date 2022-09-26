@@ -5,7 +5,6 @@ import sty from "./Header.module.css"
 const Header = (props) => {
     return (
     <header className={sty.header}>
-        логотип
         <div className={sty.loginBlock}>
             {/* <NavLink to={'/login'}>LogIn</NavLink> */}
         </div>

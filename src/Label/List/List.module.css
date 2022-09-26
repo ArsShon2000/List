@@ -7,12 +7,15 @@
 
 .divName {
   grid-area: n;
-  
+  padding: 0px;
+  position: relative;
 }
 
 .divNumbers{
+  z-index: 101;
   display: flex;
   grid-area: d;
+  /* position: absolute; */
 }
 
 
@@ -26,11 +29,11 @@
 
 .maintable{
   background-color: rgb(0, 0, 0);
-  margin:-2px;
+  margin:0px;
 }
 
 .maintableCN{
-  margin: -1px;
+  margin: 0px;
 }
 
 .table {
@@ -52,7 +55,12 @@ TD, TH {
 .th {
   background: rgb(255, 255, 255);
   cursor: pointer;
-  padding: 2px;
+
+}
+
+.th button{
+  background-color: rgb(255, 255, 255);
+  width: 168px;
 }
 
 .thCN {

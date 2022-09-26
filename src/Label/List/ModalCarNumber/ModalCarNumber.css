@@ -1,10 +1,10 @@
 .modalDates {
-  z-index: 99;
+  /* z-index: -1; */
     /* grid-area: d; */
     height: 100vh;
     width: 100vw;
     /* background-color: rgba(70, 70, 70, 0.1); */
-    position: fixed;
+    position: absolute;
     top: 0px;
     left: 0px;
     /* display: grid; */
@@ -19,9 +19,9 @@
 
 /* список номеров */
 .modalDates__content {
-  /* z-index: 99; */
-  position: absolute;
-  margin-top: 110px;
+  z-index: 101;
+  /* position: fixed; */
+  margin-top: 0px;
     padding: 20px;
     border-radius: 3px;
     background-color: rgb(223, 228, 250);

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import log from "./Login.module.css"
 
 
 
@@ -28,7 +29,7 @@ const Login = (props) => {
         })
     }
 
-    return (<div>
+    return (<div className={log.loginForm}>
         <h1>login</h1>
         <form>
         <div>

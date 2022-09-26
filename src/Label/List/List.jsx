@@ -75,7 +75,7 @@ const List = (props) => {
           <table  className={stylist.table}>
                 <th className={stylist.th} >
                   <input type="checkbox"></input>
-                  <span onClick={() => setModalActive(true)}>&nbsp;{props.names}</span>&nbsp;&nbsp;&nbsp;
+                  <button onClick={() => setModalActive(true)}>&nbsp;{props.names}</button>&nbsp;&nbsp;&nbsp;
                   </th>
           </table>
         </table>

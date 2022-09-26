@@ -5,10 +5,10 @@
   }
 
   .names {
-    position: relative;
-    grid-area: w; 
+    position: absolute;
     overflow: hidden;
   }
+  
 
   .numbArea{
   
